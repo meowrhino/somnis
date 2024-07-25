@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>los sueños de meowrhino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <marquee behavior="alternate"><h1>los sueños de ✨<span class="highlight">meowrhino</span>✨</h1></marquee>
+    </header>
+    <main>
+        <section id="dream-form">
+            <h2>Agregar un nuevo sueño</h2>
+            <form id="dreamForm">
+                <label for="dreamTitle">Título del sueño:</label>
+                <input type="text" id="dreamTitle" name="dreamTitle" required>
+                <br>
+                <label for="dreamBody">Descripción del sueño:</label>
+                <textarea id="dreamBody" name="dreamBody" rows="4" required></textarea>
+                <br>
+                <button type="button" onclick="copyDreamToClipboard()">Copiar Sueño al Portapapeles</button>
+            </form>
+        </section>
+        <section id="dreams">
+            <article>
+                <h2>Sueño 1</h2>
+                <p>Descripción del sueño...</p>
+            </article>
+            <article>
+                <h2>Sueño 2</h2>
+                <p>Descripción del sueño...</p>
+            </article>
+            <!-- Añade más artículos según sea necesario -->
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
