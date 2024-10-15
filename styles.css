@@ -1,9 +1,11 @@
 /* styles.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap');
+
 body {
     background: url('images/background.gif') repeat;
     color: #F5F5F5; /* Blanco roto */
-    font-family: 'Arial', sans-serif;
+    font-family: 'Source Code Pro', monospace;
     margin: 0;
     padding: 0;
     background-color: #1a1a1a; /* Fondo oscuro para el contenido */
@@ -18,6 +20,11 @@ header h1 {
     display: inline-block;
     color: #F5F5F5; /* Blanco roto */
     font-size: 2rem;
+    font-family: 'Instrument Serif', serif;
+}
+
+h2, h3, h4, h5, h6, small {
+    font-family: 'Instrument Serif', serif;
 }
 
 h2 {
@@ -85,6 +92,7 @@ article {
     border: 1px solid #333;
     cursor: pointer;
     transition: transform 0.2s, border-color 0.3s;
+    position: relative;
 }
 
 article.collapsed p {
@@ -96,12 +104,40 @@ article:hover {
     border-color: #FFCC66;
 }
 
+article.open {
+    background: url('images/hopeko_dots.gif') repeat; /* Fondo inspirado en Hopeko */
+    background-size: cover;
+}
+
+@keyframes moveDots {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 10px 10px;
+    }
+}
+
+article.open {
+    animation: moveDots 20s linear infinite;
+}
+
 article h2 {
     color: #FFCC66; /* Color destacado de la gama de colores */
 }
 
 article p {
     color: #F5F5F5; /* Blanco roto */
+}
+
+.date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: #FFCC66;
+    font-family: 'Instrument Serif', serif;
+    margin-bottom: 0.5rem;
 }
 
 /* Responsividad */
@@ -141,4 +177,4 @@ article p {
     article {
         padding: 0.75rem;
     }
-} 
+}
