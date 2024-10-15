@@ -94,10 +94,11 @@
                         const dateStr = dream.match(/\d{4}_\d{2}_\d{2}_\d{2}_\d{2}/)[0];
                         const [year, month, day, hours, minutes] = dateStr.split('_');
                         const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
-                        const dateSpan = document.createElement('span');
-                        dateSpan.classList.add('date');
-                        dateSpan.textContent = formattedDate;
-                        div.appendChild(dateSpan);
+                        const dateSmall = document.createElement('small');
+                        dateSmall.classList.add('date');
+                        dateSmall.textContent = formattedDate;
+                        dateSmall.style.float = 'right';
+                        div.appendChild(dateSmall);
 
                         container.appendChild(div);
                     } else {
