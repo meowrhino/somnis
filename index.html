@@ -20,21 +20,104 @@
                 <label for="dreamBody">Descripción del sueño:</label>
                 <textarea id="dreamBody" name="dreamBody" rows="4" required></textarea>
                 <br>
-                <button type="button" onclick="copyDreamToClipboard()">Copiar Sueño al Portapapeles</button>
+                <button type="button" onclick="downloadDreamAsHTML()">Descargar Sueño en HTML</button>
             </form>
         </section>
-        <section id="dreams">
-            <article>
-                <h2>Sueño 1</h2>
-                <p>Descripción del sueño...</p>
-            </article>
-            <article>
-                <h2>Sueño 2</h2>
-                <p>Descripción del sueño...</p>
-            </article>
-            <!-- Añade más artículos según sea necesario -->
+
+        <section id="dreams-container">
+            <h2>Sueños guardados</h2>
         </section>
     </main>
-    <script src="script.js"></script>
+
+    <script>
+        function downloadDreamAsHTML() {
+            const title = document.getElementById('dreamTitle').value;
+            const body = document.getElementById('dreamBody').value;
+
+            if (!title || !body) {
+                alert("Por favor, completa tanto el título como la descripción del sueño.");
+                return;
+            }
+
+            // Get the current date and time in the desired format (YYYY_MM_DD_HH_MM)
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const formattedDate = `${year}_${month}_${day}_${hours}_${minutes}`;
+
+            const htmlContent = `
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${title}</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        padding: 20px;
+                    }
+                    h2 {
+                        color: #333;
+                    }
+                    p {
+                        color: #555;
+                    }
+                </style>
+            </head>
+            <body>
+                <article>
+                    <h2>${title}</h2>
+                    <p>${body}</p>
+                </article>
+            </body>
+            </html>`;
+
+            // Create a blob and download it as an HTML file
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${formattedDate}.html`;  // The file will be named after the current date and time
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        async function loadDreams() {
+            const dreamFiles = [
+                'somnis/2024_10_14_14_50.html', 
+                'somnis/2024_10_13_09_23.html',
+                // Agrega más archivos de sueños aquí
+            ];
+
+            // Sort the dream files by their names in descending order (newest first)
+            dreamFiles.sort((a, b) => b.localeCompare(a));
+
+            const container = document.getElementById('dreams-container');
+
+            for (const dream of dreamFiles) {
+                try {
+                    const response = await fetch(dream);
+                    if (response.ok) {
+                        const dreamHTML = await response.text();
+                        const div = document.createElement('div');
+                        div.innerHTML = dreamHTML;
+                        container.appendChild(div);
+                    } else {
+                        console.error(`No se pudo cargar el archivo: ${dream}`);
+                    }
+                } catch (error) {
+                    console.error(`Error al intentar cargar el archivo: ${dream}`, error);
+                }
+            }
+        }
+
+        loadDreams();
+    </script>
 </body>
 </html>
