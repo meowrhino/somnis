@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <marquee behavior="" direction=""><h1>los sueños de <span class="highlight">meowrhino</span></h1> </marquee>
+        <h1>los sueños de <span class="highlight">meowrhino</span></h1>
     </header>
     <main>
         <section id="dream-form">
@@ -27,7 +27,6 @@
         </section>
 
         <section id="dreams-container">
-            <h2>Sueños guardados</h2>
         </section>
     </main>
 
@@ -51,8 +50,10 @@
             const formattedDate = `${year}_${month}_${day}_${hours}_${minutes}`;
 
             const htmlContent = `
+            <article>
                 <h2>${title}</h2>
-                <p>${body}</p>`;
+                <p>${body}</p>
+            </article>`;
 
             // Create a blob and download it as an HTML file
             const blob = new Blob([htmlContent], { type: 'text/html' });
@@ -88,6 +89,16 @@
                         const div = document.createElement('article');
                         div.classList.add('collapsed'); // Añade la clase 'collapsed' al cargar el sueño
                         div.innerHTML = dreamHTML; // Inserta el contenido del sueño
+
+                        // Obtener la fecha del nombre del archivo y agregarla al artículo
+                        const dateStr = dream.match(/\d{4}_\d{2}_\d{2}_\d{2}_\d{2}/)[0];
+                        const [year, month, day, hours, minutes] = dateStr.split('_');
+                        const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
+                        const dateSpan = document.createElement('span');
+                        dateSpan.classList.add('date');
+                        dateSpan.textContent = formattedDate;
+                        div.appendChild(dateSpan);
+
                         container.appendChild(div);
                     } else {
                         console.error(`No se pudo cargar el archivo: ${dream}`);
