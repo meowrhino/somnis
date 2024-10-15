@@ -1,8 +1,7 @@
 /* styles.css */
 
 body {
-    background: url('images/background.gif') repeat; 
-    /* background: url('http://hk.geocities.com/chaukaiwang/background.gif') repeat;*/
+    background: url('images/background.gif') repeat;
     color: #F5F5F5; /* Blanco roto */
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -21,7 +20,6 @@ header h1 {
     font-size: 2rem;
 }
 
-
 h2 {
     margin: 0;
 }
@@ -32,6 +30,8 @@ h2 {
 
 main {
     padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 #dream-form {
@@ -55,12 +55,22 @@ main {
     margin-bottom: 1rem;
 }
 
+#dreamForm input, #dreamForm textarea {
+    padding: 0.5rem;
+    background-color: #333;
+    border: 1px solid #444;
+    color: #F5F5F5;
+    border-radius: 4px;
+}
+
 #dreamForm button {
     background-color: #FFCC66;
     color: #1a1a1a;
     border: none;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 #dreamForm button:hover {
@@ -72,6 +82,18 @@ article {
     margin-bottom: 2rem;
     padding: 1rem;
     border-radius: 8px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.3s;
+}
+
+article.collapsed p {
+    display: none;
+}
+
+article:hover {
+    transform: scale(1.02);
+    border-color: #FFCC66;
 }
 
 article h2 {
@@ -81,3 +103,22 @@ article h2 {
 article p {
     color: #F5F5F5; /* Blanco roto */
 }
+
+/* Responsividad */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    header {
+        padding: 1.5rem;
+    }
+
+    #dream-form {
+        padding: 1rem;
+    }
+
+    #dreamForm button {
+        width: 100%;
+    }
+} 
