@@ -13,7 +13,6 @@
             background-attachment: fixed;
             font-family: Arial, sans-serif;
             color: #f0f0f0;
-            position: relative;
             margin: 0;
             padding: 0;
             display: flex;
@@ -29,23 +28,26 @@
         header h1 {
             color: #ffd700;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-size: 2rem;
         }
 
         main {
             width: 90%;
             max-width: 800px;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         #dream-form {
-            background-color: #111;
-            padding: 20px;
+            background-image: radial-gradient(#ffffff 0.5px, transparent 0.5px);
+            background-color: #222;
+            background-size: 10px 10px;
+            padding: 15px;
             margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            border: 1px solid #333;
         }
 
         #dream-form label {
@@ -56,42 +58,44 @@
         #dream-form textarea {
             width: 100%;
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 3px;
+            background-color: #111;
             color: #fff;
+            outline: none;
         }
 
         #dream-form button {
             background-color: #ffd700;
             color: #222;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         #dream-form button:hover {
             background-color: #ffa500;
+            transform: translateY(-2px);
         }
 
         article {
-            background-color: #222;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            color: #ddd;
+            background-color: #1a1a1a;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            color: #ccc;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s, border-color 0.3s;
         }
 
         article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+            transform: scale(1.02);
+            border-color: #ffd700;
         }
 
         article.collapsed p {
@@ -100,6 +104,7 @@
 
         h2 {
             color: #ffd700;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -173,7 +178,7 @@
                 // Agrega más archivos de sueños aquí
             ];
 
-            // Sort the dream files by their names in descending order (newest first)
+            // Ordenar los archivos de sueños en orden descendente (el más nuevo primero)
             dreams.sort((a, b) => b.localeCompare(a));
 
             const container = document.getElementById('dreams-container');
@@ -184,7 +189,7 @@
                     if (response.ok) {
                         const dreamHTML = await response.text();
                         const div = document.createElement('article');
-                        div.classList.add('collapsed');
+                        div.classList.add('collapsed'); // Añade la clase 'collapsed' al cargar el sueño
                         div.innerHTML = dreamHTML; // Inserta el contenido del sueño
                         container.appendChild(div);
                     } else {
@@ -195,7 +200,7 @@
                 }
             }
 
-            // Añadir evento para expandir/colapsar
+            // Añadir evento para expandir/colapsar después de cargar los sueños
             document.querySelectorAll('article').forEach(article => {
                 article.addEventListener('click', () => {
                     const isCollapsed = article.classList.toggle('collapsed');
