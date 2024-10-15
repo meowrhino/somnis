@@ -9,7 +9,7 @@
     <style>
         body {
             background-image: url('images/background.gif');
-            background-size: cover;
+            background-size: 20px 20px;
             background-attachment: fixed;
             font-family: Arial, sans-serif;
             color: #f0f0f0;
@@ -27,8 +27,8 @@
 
         header h1 {
             color: #ffd700;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-            font-size: 2rem;
+            font-size: 1.8rem;
+            margin: 0;
         }
 
         main {
@@ -36,8 +36,9 @@
             max-width: 800px;
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
+            border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
         }
 
         #dream-form {
@@ -46,7 +47,7 @@
             background-size: 10px 10px;
             padding: 15px;
             margin-bottom: 30px;
-            border-radius: 5px;
+            border-radius: 3px;
             border: 1px solid #333;
         }
 
@@ -74,19 +75,18 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s;
         }
 
         #dream-form button:hover {
             background-color: #ffa500;
-            transform: translateY(-2px);
         }
 
         article {
             background-color: #1a1a1a;
             padding: 15px;
             margin-bottom: 15px;
-            border-radius: 5px;
+            border-radius: 3px;
             border: 1px solid #333;
             color: #ccc;
             cursor: pointer;
@@ -111,7 +111,7 @@
 
 <body>
     <header>
-        <marquee behavior="alternate"><h1>los sueños de ✨<span class="highlight">meowrhino</span>✨</h1></marquee>
+        <h1>los sueños de meowrhino</h1>
     </header>
     <main>
         <section id="dream-form">
