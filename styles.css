@@ -105,6 +105,12 @@ article p {
 }
 
 /* Responsividad */
+@media (max-width: 1024px) {
+    main {
+        max-width: 90%;
+    }
+}
+
 @media (max-width: 768px) {
     main {
         padding: 1rem;
@@ -120,5 +126,19 @@ article p {
 
     #dreamForm button {
         width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    #dream-form {
+        padding: 0.75rem;
+    }
+
+    article {
+        padding: 0.75rem;
     }
 } 
