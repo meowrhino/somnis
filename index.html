@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-color: #ffffff;
+            background-color: #000;
             opacity: 0.95;
-            background-image: radial-gradient(#000000 0.55px, #ffffff 0.55px);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.7) 0.55px, #000 0.55px);
             background-size: 11px 11px;
             font-family: Arial, sans-serif;
-            color: #333;
+            color: #ccc;
             position: relative;
         }
 
         /* Estilos para los artículos de sueños */
         article {
-            background-color: #222;
+            background-color: #111;
             padding: 15px 35px;
             margin-bottom: 20px;
             border-radius: 10px;
@@ -27,10 +27,15 @@
             max-width: 70%;
             margin: 30px auto;
             font-family: 'Courier New', Courier, monospace;
-            color: #888888;
+            color: #ddd;
             transition: max-height 0.3s ease;
             overflow: hidden;
             cursor: pointer;
+            background-image: radial-gradient(
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.15)
+            );
         }
 
         article.collapsed p,
@@ -90,10 +95,10 @@
             const formattedDate = `${year}_${month}_${day}_${hours}_${minutes}`;
 
             const htmlContent = `
-                <article>
-                    <h2>${title}</h2>
-                    <p>${body}</p>
-                </article>`;
+            <article>
+                <h2>${title}</h2>
+                <p>${body}</p>
+            </article>`;
 
             // Create a blob and download it as an HTML file
             const blob = new Blob([htmlContent], { type: 'text/html' });
