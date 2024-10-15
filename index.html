@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>los sueños de meowrhino</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        p {
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        article {
+            max-width: 800px;
+            padding: 15px 35px;
+            background-color: beige;
+            margin: 20px 10px;
+        }
+
+        .data {
+            display: flex;
+            justify-content: end;
+            gap: 20px;
+            margin-top: 50px;
+            background-color: burlywood;
+            padding: 5px;
+        }
+
+        .trans {
+            opacity: 40%;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <marquee behavior="alternate"><h1>los sueños de ✨<span class="highlight">meowrhino</span>✨</h1></marquee>
@@ -89,24 +125,27 @@
         }
 
         async function loadDreams() {
-            const dreamFiles = [
-                'somnis/2024_10_14_14_50.html', 
-                'somnis/2024_10_13_09_23.html',
+            // Cambia esto por la lista de tus archivos en la carpeta 'somnis'
+            const dreams = [
+                'somnis/2024_10_15_09_30.html',
+                'somnis/2024_10_14_23_15.html',
+                'somnis/2024_10_13_04_45.html',
+                'somnis/2024_10_12_21_00.html'
                 // Agrega más archivos de sueños aquí
             ];
 
             // Sort the dream files by their names in descending order (newest first)
-            dreamFiles.sort((a, b) => b.localeCompare(a));
+            dreams.sort((a, b) => b.localeCompare(a));
 
             const container = document.getElementById('dreams-container');
 
-            for (const dream of dreamFiles) {
+            for (const dream of dreams) {
                 try {
                     const response = await fetch(dream);
                     if (response.ok) {
                         const dreamHTML = await response.text();
                         const div = document.createElement('div');
-                        div.innerHTML = dreamHTML;
+                        div.innerHTML = dreamHTML; // Inserta el contenido del sueño
                         container.appendChild(div);
                     } else {
                         console.error(`No se pudo cargar el archivo: ${dream}`);
@@ -119,5 +158,7 @@
 
         loadDreams();
     </script>
+
 </body>
+
 </html>
